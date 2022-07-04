@@ -1,12 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import Habits from './components/Habits';
 import Header from './components/Header';
 
 export default function App() {
+  // const [habitList, setHabitList] = useState([{ name: "habit1" }, { name: "habit2" },]);
+  const [habitList, setHabitList] = useState([]);
   return (
     <View style={styles.container}>
       <Header />
-      <Habits />
+      <Habits habitList={habitList} />
     </View>
   );
 }
