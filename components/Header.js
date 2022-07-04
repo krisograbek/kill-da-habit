@@ -1,15 +1,11 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native';
+import ProgressBar from './ProgressBar';
 
 const Header = () => {
   return (
     <View style={styles.headerContainer}>
-      <Text>
-        Header
-      </Text>
-      {/* <Text>
-        Header
-      </Text> */}
+      <ProgressBar progress={0.7} />
     </View>
   )
 }
