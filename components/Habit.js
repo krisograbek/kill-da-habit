@@ -3,9 +3,9 @@ import { Text, View } from 'react-native';
 
 const Habit = ({ name }) => {
   return (
-    <View>
-      <Text>
-        {name}
+    <View testID='habitView'>
+      <Text testID="text">
+        Hi
       </Text>
     </View>
   )
