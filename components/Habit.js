@@ -3,8 +3,8 @@ import { Text, View } from 'react-native';
 
 const Habit = ({ name }) => {
   return (
-    <View>
-      <Text>
+    <View testID='habitView'>
+      <Text testID="text">
         {name}
       </Text>
     </View>
