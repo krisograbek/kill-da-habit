@@ -23,7 +23,7 @@ const HabitForm = ({ isVisible, setIsVisible, setHabitList }) => {
   }
 
   return (
-    <Modal visible={isVisible}>
+    <Modal testID='modal' visible={isVisible}>
       <View style={styles.formContainer}>
         <Text>
           Create a new Habit
@@ -39,7 +39,7 @@ const HabitForm = ({ isVisible, setIsVisible, setHabitList }) => {
         </View>
       </View>
       <View>
-        <Button title='Close' onPress={handleOnClose} />
+        <Button testID='closeButton' title='Close' onPress={handleOnClose} />
       </View>
     </Modal>
   )
