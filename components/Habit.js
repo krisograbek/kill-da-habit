@@ -5,7 +5,7 @@ const Habit = ({ name }) => {
   return (
     <View testID='habitView'>
       <Text testID="text">
-        Hi
+        {name}
       </Text>
     </View>
   )
