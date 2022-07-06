@@ -14,9 +14,9 @@ describe("Habit Form", () => {
     expect(component.props.visible).toBe(false);
   });
 
-  it("clears habit on close", () => {
-    const { getByTestId } = render(<HabitForm isVisible={true} />)
-    const button = getByTestId('closeButton');
-    fireEvent.press(button);
-  });
+  // it("clears habit on close", () => {
+  //   const { getByTestId } = render(<HabitForm isVisible={true} />)
+  //   const button = getByTestId('closeButton');
+  //   fireEvent.press(button);
+  // });
 })
