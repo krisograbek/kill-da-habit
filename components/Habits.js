@@ -6,15 +6,20 @@ const Habits = ({ habitList }) => {
   return (
     <View style={styles.habitsContainer}>
       {habitList.length < 1 ? (
-        <Text>Please Add Your First Habit</Text>
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>
+            Press the "+" On Top Left To Add Your First Habit
+          </Text>
+        </View>
       ) : (<FlatList data={habitList}
         renderItem={
           (itemData) => (
             <Habit name={itemData.item.name} />
           )}
       />
-      )}
-    </View>
+      )
+      }
+    </View >
   )
 }
 
@@ -24,9 +29,15 @@ const styles = StyleSheet.create({
   habitsContainer: {
     flex: 9,
     width: '100%',
-    backgroundColor: '#888',
+    backgroundColor: '#aaa',
     alignItems: 'stretch',
-    justifyContent: 'center',
-    // flexDirection: 'row',
   },
+  textContainer: {
+    alignSelf: 'center',
+  },
+  text: {
+    marginTop: 12,
+    marginHorizontal: 16,
+    fontSize: 24
+  }
 });

@@ -12,7 +12,7 @@ export default function App() {
   return (
     <View style={styles.appContainer}>
       <Header>
-        <ProgressBar progress={0.1} />
+        <ProgressBar progress={0.03} />
         <Pressable style={styles.button} onPress={() => setCreateHabitVisible(true)}>
           <Text style={styles.buttonText}>+</Text>
         </Pressable>
@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    // flex: 1,
     borderRadius: 50,
     backgroundColor: theme.colors.secondary,
     height: 50,

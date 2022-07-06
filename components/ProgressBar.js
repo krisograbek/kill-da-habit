@@ -24,16 +24,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'stretch',
     paddingHorizontal: 8,
+    // paddingTop: 6,
     height: '80%',
+    margin: 6,
   },
   leftSide: {
-    borderTopLeftRadius: 12,
-    borderBottomLeftRadius: 12,
+    borderTopLeftRadius: 8,
+    borderBottomLeftRadius: 8,
     backgroundColor: theme.colors.primary,
   },
   rightSide: {
-    borderTopRightRadius: 12,
-    borderBottomRightRadius: 12,
+    borderTopRightRadius: 8,
+    borderBottomRightRadius: 8,
     backgroundColor: theme.colors.primaryDark,
   },
   text: {
