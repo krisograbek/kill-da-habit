@@ -1,15 +1,21 @@
 import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Button, StyleSheet, View } from 'react-native';
+import HabitForm from './components/HabitForm';
 import Habits from './components/Habits';
 import Header from './components/Header';
+import ProgressBar from './components/ProgressBar';
 
 export default function App() {
-  // const [habitList, setHabitList] = useState([{ name: "habit1" }, { name: "habit2" },]);
+  const [createHabitVisible, setCreateHabitVisible] = useState(false);
   const [habitList, setHabitList] = useState([]);
   return (
     <View style={styles.container}>
-      <Header />
+      <Header>
+        <ProgressBar progress={0.7} />
+        <Button title='Add Habit' onPress={() => setCreateHabitVisible(true)} />
+      </Header>
       <Habits habitList={habitList} />
+      <HabitForm isVisible={createHabitVisible} setIsVisible={setCreateHabitVisible} setHabitList={setHabitList} />
     </View>
   );
 }
