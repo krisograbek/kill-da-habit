@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import HabitForm from './components/HabitForm';
 import Habits from './components/Habits';
 import Header from './components/Header';
