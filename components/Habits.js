@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
   habitsContainer: {
     flex: 9,
     width: '100%',
-    backgroundColor: '#aaa',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
+    backgroundColor: '#888',
+    alignItems: 'stretch',
+    justifyContent: 'center',
     // flexDirection: 'row',
   },
 });

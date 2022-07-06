@@ -9,7 +9,7 @@ const HabitForm = ({ isVisible, setIsVisible, setHabitList }) => {
   const handleOnAddHabit = () => {
     setHabitList(prevState => [...prevState, habit]);
     setIsVisible(false);
-    setHabit(initialHabit);
+    // setHabit(initialHabit);
   }
 
   const handleFormUpdate = (enteredText, key) => {
