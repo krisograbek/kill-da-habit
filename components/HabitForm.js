@@ -7,14 +7,13 @@ const HabitForm = ({ isVisible, setIsVisible, setHabitList }) => {
   const [habit, setHabit] = useState(initialHabit);
 
   const handleOnAddHabit = () => {
-    console.log("Current Habit: ", habit);
     setHabitList(prevState => [...prevState, habit]);
     setIsVisible(false);
+    setHabit(initialHabit);
   }
 
   const handleFormUpdate = (enteredText, key) => {
     setHabit({ ...habit, [key]: enteredText });
-    console.log("Current Habit: ", habit);
   }
 
   const handleOnClose = () => {
@@ -23,7 +22,7 @@ const HabitForm = ({ isVisible, setIsVisible, setHabitList }) => {
   }
 
   return (
-    <Modal testID='modal' visible={isVisible}>
+    <Modal testID='modal' visible={isVisible} animationType="slide">
       <View style={styles.formContainer}>
         <Text>
           Create a new Habit

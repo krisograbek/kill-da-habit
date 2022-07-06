@@ -1,19 +1,17 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native';
+import { theme } from '../global.styles';
 
 const ProgressBar = ({ progress }) => {
   return (
     <View style={styles.mainContainer}>
       <View style={[styles.leftSide, { flex: progress }]}>
-        <Text>
-          Progress
-        </Text>
       </View>
       <View style={[styles.rightSide, { flex: (1 - progress) }]}>
-        <Text>
-          Still to go
-        </Text>
       </View>
+      {/* <Text style={styles.text}>
+        {progress}
+      </Text> */}
     </View>
   )
 }
@@ -22,21 +20,23 @@ export default ProgressBar;
 
 const styles = StyleSheet.create({
   mainContainer: {
+    flex: 2,
     flexDirection: 'row',
     alignItems: 'stretch',
-    // paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingHorizontal: 8,
     height: '80%',
-    width: '60%',
   },
   leftSide: {
     borderTopLeftRadius: 12,
     borderBottomLeftRadius: 12,
-    backgroundColor: 'powderblue',
+    backgroundColor: theme.colors.primary,
   },
   rightSide: {
     borderTopRightRadius: 12,
     borderBottomRightRadius: 12,
-    backgroundColor: 'skyblue',
+    backgroundColor: theme.colors.primaryDark,
   },
+  text: {
+    // color: 'white'
+  }
 })
