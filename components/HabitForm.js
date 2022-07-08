@@ -16,12 +16,11 @@ const HabitForm = ({ isVisible, setIsVisible, setHabitList }) => {
     setNameError("");
     setFactorError("");
     if (name.length < 1) {
-      setNameError("This field is required");
+      setNameError("Name field is required");
       validationPassed = false;
     }
     try {
       const parsed = parseFloat(factor);
-      console.log(parsed)
       if (isNaN(parsed)) {
         setFactorError("Factor must be a valid number");
         validationPassed = false;
@@ -33,7 +32,7 @@ const HabitForm = ({ isVisible, setIsVisible, setHabitList }) => {
       }
 
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setFactorError(error.msg);
       validationPassed = false;
     }
@@ -45,11 +44,10 @@ const HabitForm = ({ isVisible, setIsVisible, setHabitList }) => {
     if (validationResult === true) {
       const newHabit = { name: name, factor: parseFloat(factor) }
       setHabitList(prevState => [...prevState, newHabit]);
-      console.log(newHabit)
       setIsVisible(false);
     }
     else {
-      console.log("Sorry man")
+      // console.log("Sorry man")
     }
     // setHabit(initialHabit);
 
@@ -80,17 +78,17 @@ const HabitForm = ({ isVisible, setIsVisible, setHabitList }) => {
         <View style={styles.nameStyle}>
           <TextInput testID='name' value={name} placeholder='Name' onChangeText={handleNameChange} />
         </View>
-        {(nameError.length > 0) && <Text style={{ color: "red" }}>{nameError}</Text>}
+        {(nameError.length > 0) && <Text testID='nameError' style={{ color: "red" }}>{nameError}</Text>}
         <View style={styles.factorStyle}>
           <TextInput testID='factor' value={factor} keyboardType='numeric' placeholder='Factor' onChangeText={handleFactorChange} />
         </View>
-        {(factorError.length > 0) && <Text style={{ color: "red" }}>{factorError}</Text>}
+        {(factorError.length > 0) && <Text testID='factorError' style={{ color: "red" }}>{factorError}</Text>}
         <View style={styles.buttonContainer}>
           <View style={styles.button}>
             <Button testID='closeButton' title='Cancel' onPress={handleOnClose} color={theme.colors.secondary} />
           </View>
           <View style={styles.button}>
-            <Button title='Create Habit' onPress={handleOnAddHabit} color={theme.colors.primary} />
+            <Button testID='submitButton' title='Create Habit' onPress={handleOnAddHabit} color={theme.colors.primary} />
           </View>
         </View>
       </View>
