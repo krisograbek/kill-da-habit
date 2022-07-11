@@ -6,20 +6,67 @@ const initialHabit = { name: "", factor: "" };
 
 const HabitForm = ({ isVisible, setIsVisible, setHabitList }) => {
   const [habit, setHabit] = useState(initialHabit);
+  const [name, setName] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [factor, setFactor] = useState(null);
+  const [factorError, setFactorError] = useState("");
 
-  const handleOnAddHabit = () => {
-    setHabitList(prevState => [...prevState, habit]);
-    setIsVisible(false);
-    // setHabit(initialHabit);
+  const validateForm = () => {
+    let validationPassed = true;
+    setNameError("");
+    setFactorError("");
+    if (name.length < 1) {
+      setNameError("Name field is required");
+      validationPassed = false;
+    }
+    try {
+      const parsed = parseFloat(factor);
+      if (isNaN(parsed)) {
+        setFactorError("Factor must be a valid number");
+        validationPassed = false;
+      }
+
+      if (parsed < 0.01) {
+        setFactorError("Factor must be greater than 0.01");
+        validationPassed = false;
+      }
+
+    } catch (error) {
+      // console.log(error);
+      setFactorError(error.msg);
+      validationPassed = false;
+    }
+    return validationPassed;
   }
 
-  const handleFormUpdate = (enteredText, key) => {
-    setHabit({ ...habit, [key]: enteredText });
+  const handleOnAddHabit = () => {
+    const validationResult = validateForm();
+    if (validationResult === true) {
+      const newHabit = { name: name, factor: parseFloat(factor) }
+      setHabitList(prevState => [...prevState, newHabit]);
+      setIsVisible(false);
+    }
+    else {
+      // console.log("Sorry man")
+    }
+    // setHabit(initialHabit);
+
+  }
+
+  const handleNameChange = (enteredText) => {
+    setName(enteredText);
+  }
+
+  const handleFactorChange = (enteredText) => {
+    setFactor(enteredText);
   }
 
   const handleOnClose = () => {
     setIsVisible(false);
-    setHabit(initialHabit);
+    setName("");
+    setNameError("");
+    setFactor(0.0)
+    setFactorError("")
   }
 
   return (
@@ -29,17 +76,19 @@ const HabitForm = ({ isVisible, setIsVisible, setHabitList }) => {
           Add the habit you want to break
         </Text>
         <View style={styles.nameStyle}>
-          <TextInput testID='name' value={habit.name} placeholder='Name' onChangeText={e => handleFormUpdate(e, "name")} />
+          <TextInput testID='name' value={name} placeholder='Name' onChangeText={handleNameChange} />
         </View>
+        {(nameError.length > 0) && <Text testID='nameError' style={{ color: "red" }}>{nameError}</Text>}
         <View style={styles.factorStyle}>
-          <TextInput testID='factor' value={habit.factor.toString()} keyboardType='number-pad' placeholder='Factor' onChangeText={e => handleFormUpdate(e, "factor")} />
+          <TextInput testID='factor' value={factor} keyboardType='numeric' placeholder='Factor' onChangeText={handleFactorChange} />
         </View>
+        {(factorError.length > 0) && <Text testID='factorError' style={{ color: "red" }}>{factorError}</Text>}
         <View style={styles.buttonContainer}>
           <View style={styles.button}>
             <Button testID='closeButton' title='Cancel' onPress={handleOnClose} color={theme.colors.secondary} />
           </View>
           <View style={styles.button}>
-            <Button title='Create Habit' onPress={handleOnAddHabit} color={theme.colors.primary} />
+            <Button testID='submitButton' title='Create Habit' onPress={handleOnAddHabit} color={theme.colors.primary} />
           </View>
         </View>
       </View>
