@@ -8,17 +8,18 @@ const Habits = ({ habitList }) => {
       {habitList.length < 1 ? (
         <View style={styles.textContainer}>
           <Text style={styles.text}>
-            Press the "+" On Top Left To Add Your First Habit
+            Press the "+" On Top Right To Add Your First Habit
           </Text>
         </View>
-      ) : (<FlatList data={habitList}
-        renderItem={
-          (itemData) => (
-            <Habit name={itemData.item.name} />
-          )}
-      />
-      )
-      }
+      ) : (
+        <FlatList
+          data={habitList}
+          renderItem={
+            (itemData) => (
+              <Habit name={itemData.item.name} />
+            )}
+        />
+      )}
     </View >
   )
 }
