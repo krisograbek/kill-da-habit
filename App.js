@@ -4,21 +4,24 @@ import HabitForm from './components/HabitForm';
 import Habits from './components/Habits';
 import Header from './components/Header';
 import ProgressBar from './components/ProgressBar';
+import SavingGoal from './components/SavingGoal';
 import { theme } from './global.styles';
 
 export default function App() {
   const [createHabitVisible, setCreateHabitVisible] = useState(false);
+  const [isGoalModalVisible, setIsGoalModalVisible] = useState(false);
   const [habitList, setHabitList] = useState([]);
   return (
     <View style={styles.appContainer}>
       <Header>
-        <ProgressBar progress={0.03} />
+        <ProgressBar progress={0.3} setShowGoalVisible={setIsGoalModalVisible} />
         <Pressable style={styles.button} onPress={() => setCreateHabitVisible(true)}>
           <Text style={styles.buttonText}>+</Text>
         </Pressable>
       </Header>
       <Habits habitList={habitList} />
       <HabitForm isVisible={createHabitVisible} setIsVisible={setCreateHabitVisible} setHabitList={setHabitList} />
+      <SavingGoal isVisible={isGoalModalVisible} setIsVisible={setIsGoalModalVisible} />
     </View>
   );
 }
