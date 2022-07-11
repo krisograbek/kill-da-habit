@@ -11,6 +11,7 @@ export default function App() {
   const [createHabitVisible, setCreateHabitVisible] = useState(false);
   const [isGoalModalVisible, setIsGoalModalVisible] = useState(false);
   const [habitList, setHabitList] = useState([]);
+  const [currentGoal, setCurrentGoal] = useState({ name: "Headphones", price: 100 })
   return (
     <View style={styles.appContainer}>
       <Header>
@@ -21,7 +22,7 @@ export default function App() {
       </Header>
       <Habits habitList={habitList} />
       <HabitForm isVisible={createHabitVisible} setIsVisible={setCreateHabitVisible} setHabitList={setHabitList} />
-      <SavingGoal isVisible={isGoalModalVisible} setIsVisible={setIsGoalModalVisible} />
+      <SavingGoal isVisible={isGoalModalVisible} setIsVisible={setIsGoalModalVisible} goal={currentGoal} saved={10} />
     </View>
   );
 }
