@@ -2,19 +2,14 @@ import React, { useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { theme } from '../global.styles';
 
-const ProgressBar = ({ progress, setShowGoalVisible }) => {
+const ProgressBar = ({ progress, mainStyles }) => {
   return (
-    // <View >
-    <Pressable style={styles.mainContainer} onPress={() => setShowGoalVisible(true)}>
+    <View style={[styles.mainContainer, mainStyles]}>
       <View style={[styles.leftSide, { flex: progress }]}>
       </View>
       <View style={[styles.rightSide, { flex: (1 - progress) }]}>
       </View>
-      {/* <Text style={styles.text}>
-        {progress}
-      </Text> */}
-    </Pressable>
-    // </View>
+    </View>
   )
 }
 
@@ -22,13 +17,11 @@ export default ProgressBar;
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flex: 2,
+    // flex: 1,
     flexDirection: 'row',
     alignItems: 'stretch',
     paddingHorizontal: 8,
-    // paddingTop: 6,
-    height: '80%',
-    margin: 6,
+    paddingTop: 6,
   },
   leftSide: {
     borderTopLeftRadius: 8,

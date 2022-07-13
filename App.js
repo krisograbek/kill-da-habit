@@ -15,7 +15,9 @@ export default function App() {
   return (
     <View style={styles.appContainer}>
       <Header>
-        <ProgressBar progress={0.3} setShowGoalVisible={setIsGoalModalVisible} />
+        <Pressable style={styles.progressContainer} onPress={() => setIsGoalModalVisible(true)}>
+          <ProgressBar progress={0.3} setShowGoalVisible={setIsGoalModalVisible} />
+        </Pressable>
         <Pressable style={styles.button} onPress={() => setCreateHabitVisible(true)}>
           <Text style={styles.buttonText}>+</Text>
         </Pressable>
@@ -34,6 +36,11 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  progressContainer: {
+    flex: 1,
+    height: '80%',
+    margin: 12,
   },
   button: {
     borderRadius: 50,

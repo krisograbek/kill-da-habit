@@ -70,7 +70,7 @@ const HabitForm = ({ isVisible, setIsVisible, setHabitList }) => {
   }
 
   return (
-    <Modal testID='modal' visible={isVisible} animationType="slide">
+    <Modal testID='modal' visible={isVisible} animationType="slide" onRequestClose={handleOnClose}>
       <View style={styles.formContainer}>
         <Text style={{ fontSize: 20, marginVertical: 16, textAlign: 'center' }}>
           Add the habit you want to break
