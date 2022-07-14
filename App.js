@@ -11,12 +11,12 @@ export default function App() {
   const [createHabitVisible, setCreateHabitVisible] = useState(false);
   const [isGoalModalVisible, setIsGoalModalVisible] = useState(false);
   const [habitList, setHabitList] = useState([]);
-  const [currentGoal, setCurrentGoal] = useState({ name: "Headphones", price: 100 })
+  const [currentGoal, setCurrentGoal] = useState({ name: "Headphones", price: 99.99 })
   return (
     <View style={styles.appContainer}>
       <Header>
         <Pressable style={styles.progressContainer} onPress={() => setIsGoalModalVisible(true)}>
-          <ProgressBar progress={0.3} setShowGoalVisible={setIsGoalModalVisible} />
+          <ProgressBar progress={0.3} mainStyles={{ flex: 0.5, paddingHorizontal: 12, paddingVertical: 6, }} />
         </Pressable>
         <Pressable style={styles.button} onPress={() => setCreateHabitVisible(true)}>
           <Text style={styles.buttonText}>+</Text>
@@ -39,8 +39,6 @@ const styles = StyleSheet.create({
   },
   progressContainer: {
     flex: 1,
-    height: '80%',
-    margin: 12,
   },
   button: {
     borderRadius: 50,

@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { theme } from '../global.styles';
 
 const ProgressBar = ({ progress, mainStyles }) => {
+  console.log(mainStyles)
   return (
     <View style={[styles.mainContainer, mainStyles]}>
       <View style={[styles.leftSide, { flex: progress }]}>
@@ -20,8 +21,6 @@ const styles = StyleSheet.create({
     // flex: 1,
     flexDirection: 'row',
     alignItems: 'stretch',
-    paddingHorizontal: 8,
-    paddingTop: 6,
   },
   leftSide: {
     borderTopLeftRadius: 8,

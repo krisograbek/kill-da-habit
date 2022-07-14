@@ -4,6 +4,8 @@ import { theme } from '../global.styles';
 import ProgressBar from './ProgressBar';
 
 const SavingGoal = ({ isVisible, setIsVisible, goal, saved }) => {
+  const { name, price } = goal;
+  const progressPercent = parseInt(saved / price * 100)
   const handleOnClose = () => {
     setIsVisible(false);
   }
@@ -28,18 +30,20 @@ const SavingGoal = ({ isVisible, setIsVisible, goal, saved }) => {
           </View>
           <View>
             <Text>
-              Price: {goal.price}
+              Price: {goal.price}€
             </Text>
           </View>
         </View>
+        <ProgressBar progress={saved / goal.price} mainStyles={{ height: 40 }} />
         <View style={styles.progressContainer}>
-          <Text>
-            Already saved {saved}
+          <Text style={[styles.progressText, { color: theme.colors.primary }]}>
+            {saved}€/{goal.price}€&nbsp;({progressPercent}%)
           </Text>
-          <Text>Still to go {goal.price - saved}</Text>
+          <Text style={[styles.progressText, { color: theme.colors.secondary }]}>
+            {goal.price - saved}€ left
+          </Text>
         </View>
         {/* <View style={styles.progressBar}> */}
-        <ProgressBar progress={saved / goal.price} mainStyles={{}} />
         {/* </View> */}
         <View style={styles.button}>
           <Button testID='closeButton' title='Cancel' onPress={handleOnClose} color={theme.colors.secondary} />
@@ -63,6 +67,7 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontSize: 20,
+    fontWeight: "600",
   },
   goalContainer: {
     flex: 2,
@@ -76,11 +81,16 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     padding: 16,
   },
   progressBar: {
     flex: 1,
+  },
+  progressText: {
+    fontSize: 20,
+    fontWeight: "600",
+    paddingHorizontal: 4,
   },
   button: {
     width: '45%',
