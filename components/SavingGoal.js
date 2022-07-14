@@ -3,28 +3,38 @@ import { Button, Image, Modal, StyleSheet, Text, View } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { theme } from '../global.styles';
 import ProgressBar from './ProgressBar';
+import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 
 const SavingGoal = ({ isVisible, setIsVisible, goal, saved }) => {
   const { name, price, img } = goal;
   const [image, setImage] = useState(null);
-
-  console.log(image)
+  const [imageStyles, setImageStyles] = useState({ height: "100%", aspectRatio: 1 })
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [4, 3],
+      // aspect: [4, 3],
       quality: 1,
     });
 
-    console.log(result);
+    // console.log("Result", result);
 
     if (!result.cancelled) {
       setImage(result.uri);
+      // calculate aspect ratio
+      const ratio = result.width / result.height;
+      // if image is horizontal, use 100% width
+      // otherwise use 100% height
+      if (ratio < 1) {
+        setImageStyles({ height: "100%", aspectRatio: ratio })
+      } else {
+        setImageStyles({ width: "100%", aspectRatio: ratio })
+      }
     }
   };
+
   const progressPercent = parseInt(saved / price * 100)
   const handleOnClose = () => {
     setIsVisible(false);
@@ -42,7 +52,9 @@ const SavingGoal = ({ isVisible, setIsVisible, goal, saved }) => {
             {!image ? (
               <Button title='upload image' onPress={pickImage} color={theme.colors.secondary} />
             ) : (
-              <Image source={{ uri: image }} style={{ width: 300, height: "100%" }} />
+              <Pressable onPress={pickImage}>
+                <Image source={{ uri: image }} style={imageStyles} />
+              </Pressable>
             )}
           </View>
           <View>
@@ -103,7 +115,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignContent: "stretch",
-    backgroundColor: "green"
+    // backgroundColor: "green"
   },
   progressContainer: {
     flex: 1,
