@@ -1,10 +1,30 @@
-import React from 'react'
-import { Button, Modal, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react'
+import { Button, Image, Modal, StyleSheet, Text, View } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
 import { theme } from '../global.styles';
 import ProgressBar from './ProgressBar';
 
 const SavingGoal = ({ isVisible, setIsVisible, goal, saved }) => {
   const { name, price, img } = goal;
+  const [image, setImage] = useState(null);
+
+  console.log(image)
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
   const progressPercent = parseInt(saved / price * 100)
   const handleOnClose = () => {
     setIsVisible(false);
@@ -19,10 +39,10 @@ const SavingGoal = ({ isVisible, setIsVisible, goal, saved }) => {
         </View>
         <View style={styles.goalContainer}>
           <View style={styles.imageContainer}>
-            {img === "" ? (
-              <Button title='upload image' onPress={() => { console.log("Upload Pressed") }} color={theme.colors.secondary} />
+            {!image ? (
+              <Button title='upload image' onPress={pickImage} color={theme.colors.secondary} />
             ) : (
-              <Text>{img}</Text>
+              <Image source={{ uri: image }} style={{ width: 300, height: "100%" }} />
             )}
           </View>
           <View>
@@ -81,7 +101,9 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     flex: 1,
-    justifyContent: "center"
+    justifyContent: "center",
+    alignContent: "stretch",
+    backgroundColor: "green"
   },
   progressContainer: {
     flex: 1,
