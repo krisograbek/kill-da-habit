@@ -11,7 +11,7 @@ export default function App() {
   const [createHabitVisible, setCreateHabitVisible] = useState(false);
   const [isGoalModalVisible, setIsGoalModalVisible] = useState(false);
   const [habitList, setHabitList] = useState([]);
-  const [currentGoal, setCurrentGoal] = useState({ name: "Headphones", price: 99.99 })
+  const [currentGoal, setCurrentGoal] = useState({ name: "Headphones", price: 99.99, img: "" })
   return (
     <View style={styles.appContainer}>
       <Header>
