@@ -4,21 +4,27 @@ import HabitForm from './components/HabitForm';
 import Habits from './components/Habits';
 import Header from './components/Header';
 import ProgressBar from './components/ProgressBar';
+import SavingGoal from './components/SavingGoal';
 import { theme } from './global.styles';
 
 export default function App() {
   const [createHabitVisible, setCreateHabitVisible] = useState(false);
+  const [isGoalModalVisible, setIsGoalModalVisible] = useState(false);
   const [habitList, setHabitList] = useState([]);
+  const [currentGoal, setCurrentGoal] = useState({ name: "Headphones", price: 99.99, img: "" })
   return (
     <View style={styles.appContainer}>
       <Header>
-        <ProgressBar progress={0.03} />
+        <Pressable style={styles.progressContainer} onPress={() => setIsGoalModalVisible(true)}>
+          <ProgressBar progress={0.3} mainStyles={{ flex: 0.5, paddingHorizontal: 12, paddingVertical: 6, }} />
+        </Pressable>
         <Pressable style={styles.button} onPress={() => setCreateHabitVisible(true)}>
           <Text style={styles.buttonText}>+</Text>
         </Pressable>
       </Header>
       <Habits habitList={habitList} />
       <HabitForm isVisible={createHabitVisible} setIsVisible={setCreateHabitVisible} setHabitList={setHabitList} />
+      <SavingGoal isVisible={isGoalModalVisible} setIsVisible={setIsGoalModalVisible} goal={currentGoal} saved={10} />
     </View>
   );
 }
@@ -30,6 +36,9 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  progressContainer: {
+    flex: 1,
   },
   button: {
     borderRadius: 50,
